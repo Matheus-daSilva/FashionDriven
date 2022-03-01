@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 /*Estilos da header*/
 
 header {
@@ -171,19 +175,21 @@ footer h2{
 .rodape{
     display: flex;
     position: absolute;
-    justify-content: space-between;
+    overflow-x: scroll;
     left: 121.99px;
     top: 73.78px;
     width: 1076px;
 
 }
-.ultimos-pedidos{
+.rodape figure{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 201.69px;
     height: 236.47px;
     border-radius: 10px;
+    border: #FFFFFF;
+    margin-right: 16.43px;
     background-color: #FFFFFF;
 }
 .ultimos-pedidos img{
@@ -192,10 +198,12 @@ footer h2{
 }
 p{
     margin-top: 7.94px;
-    font-weight: bold;
     font-size: 20px;
+    width: 160px;
+    height: 23px;
     line-height: 23px;
     color: #232323;
+    overflow: hidden;
     font-family: 'Encode Sans', sans-serif;
 }
 
