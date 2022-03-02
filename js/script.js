@@ -119,7 +119,7 @@ function falha() {
 
 function ultimosPedidos() {
     let request = axios.get("https://mock-api.driven.com.br/api/v4/shirts-api/shirts");
-    request.then((mensagem) => {carregaUltimosPedidos(mensagem)});
+    request.then((mensagem) => { carregaUltimosPedidos(mensagem) });
 }
 
 function carregaUltimosPedidos(lista) {
@@ -137,21 +137,24 @@ function carregaUltimosPedidos(lista) {
     }
 }
 
-function encomendar(identificador){
-    for (j = 0; j < listaDaAPI.length; j++){
-        if (listaDaAPI[j].id == identificador){
-            object = {
-                model: listaDaAPI[j].model,
-                neck: listaDaAPI[j].neck,
-                material: listaDaAPI[j].material,
-                image: listaDaAPI[j].image,
-                owner: nome,
-                author: listaDaAPI[j].owner
+function encomendar(identificador) {
+    let confirmacao = confirm("Deseja concluir esta encomenda?");
+    if (confirmacao == true) {
+        for (j = 0; j < listaDaAPI.length; j++) {
+            if (listaDaAPI[j].id == identificador) {
+                object = {
+                    model: listaDaAPI[j].model,
+                    neck: listaDaAPI[j].neck,
+                    material: listaDaAPI[j].material,
+                    image: listaDaAPI[j].image,
+                    owner: nome,
+                    author: listaDaAPI[j].owner
+                }
+                console.log(object);
+                let promisse = axios.post("https://mock-api.driven.com.br/api/v4/shirts-api/shirts", object);
+                promisse.then(sucesso);
+                promisse.catch(falha);
             }
-            console.log(object);
-            let promisse = axios.post("https://mock-api.driven.com.br/api/v4/shirts-api/shirts", object);
-            promisse.then(sucesso);
-            promisse.catch(falha);
         }
     }
 
