@@ -4,6 +4,7 @@ let tipoDoTecido = null;
 let imgURL = null;
 let img = null;
 let nome = null;
+let listaDaAPI = null;
 let object = {
     model: "",
     neck: "",
@@ -122,10 +123,13 @@ function ultimosPedidos() {
 }
 
 function carregaUltimosPedidos(lista) {
+    listaDaAPI = lista;
+    console.log(listaDaAPI);
     let criarOsPedidos = document.querySelector(".rodape");
+    criarOsPedidos.innerHTML = ""
     for (i = 0; i < lista.data.length; i++) {
         criarOsPedidos.innerHTML += `
-            <figure class="ultimos-pedidos">
+            <figure class="ultimos-pedidos" id="${lista.data[i].id}">
                 <img src="${lista.data[i].image}">
                 <p><b>Criador:</b> ${lista.data[i].owner}</p>
             </figure>
