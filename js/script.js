@@ -123,19 +123,38 @@ function ultimosPedidos() {
 }
 
 function carregaUltimosPedidos(lista) {
-    listaDaAPI = lista;
+    listaDaAPI = lista.data;
     console.log(listaDaAPI);
     let criarOsPedidos = document.querySelector(".rodape");
     criarOsPedidos.innerHTML = ""
     for (i = 0; i < lista.data.length; i++) {
         criarOsPedidos.innerHTML += `
-            <figure class="ultimos-pedidos" id="${lista.data[i].id}">
+            <figure class="ultimos-pedidos" onclick="encomendar('${lista.data[i].id}')">
                 <img src="${lista.data[i].image}">
                 <p><b>Criador:</b> ${lista.data[i].owner}</p>
             </figure>
             `;
     }
-    console.log(criarOsPedidos.value)
+}
+
+function encomendar(identificador){
+    for (j = 0; j < listaDaAPI.length; j++){
+        if (listaDaAPI[j].id == identificador){
+            object = {
+                model: listaDaAPI[j].model,
+                neck: listaDaAPI[j].neck,
+                material: listaDaAPI[j].material,
+                image: listaDaAPI[j].image,
+                owner: nome,
+                author: listaDaAPI[j].owner
+            }
+            console.log(object);
+            let promisse = axios.post("https://mock-api.driven.com.br/api/v4/shirts-api/shirts", object);
+            promisse.then(sucesso);
+            promisse.catch(falha);
+        }
+    }
+
 }
 
 // Função responsável por carregar a página
